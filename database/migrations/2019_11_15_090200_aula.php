@@ -14,11 +14,11 @@ class Aula extends Migration
     public function up()
     {
         Schema::create('aula', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->string('Nombre');
-            $table->longText('Descripcion')->nullable();
-            $table->integer('Numero')->nullable();
-            $table->boolean('Reservable')->default(false);
+            $table->increments('id');
+            $table->string('nombre');
+            $table->longText('descripcion')->nullable();
+            $table->integer('numero')->nullable();
+            $table->boolean('reservable')->default(false);
             $table->timestamps();
         });
     }

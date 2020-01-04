@@ -14,11 +14,11 @@ class Grupo extends Migration
     public function up()
     {
         Schema::create('grupo', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->string('Nombre');
-            $table->longText('Descripcion')->nullable();
-            $table->string('NombreTutor')->nullable();
-            $table->string('Curso')->nullable();
+            $table->increments('id');
+            $table->string('nombre');
+            $table->longText('descripcion')->nullable();
+            $table->string('nombreTutor')->nullable();
+            $table->string('curso')->nullable();
             $table->timestamps();
         });
     }

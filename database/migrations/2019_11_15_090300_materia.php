@@ -14,7 +14,7 @@ class Materia extends Migration
     public function up()
     {
         Schema::create('materia', function (Blueprint $table) {
-            $table->increments('Id');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('departamento')->nullable();
             $table->longText('observaciones')->nullable();
@@ -29,6 +29,6 @@ class Materia extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Materia');
+        Schema::dropIfExists('materia');
     }
 }

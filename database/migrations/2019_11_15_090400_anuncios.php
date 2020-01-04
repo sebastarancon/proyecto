@@ -14,12 +14,12 @@ class Anuncios extends Migration
     public function up()
     {
         Schema::create('anuncios', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->string('Nombre');
-            $table->longText('Descripcion');
-            $table->dateTime('Inicio');
-            $table->dateTime('Fin');
-            $table->boolean('Activo')->default(false);
+            $table->increments('id');
+            $table->string('nombre');
+            $table->longText('descripcion')->nullable();
+            $table->dateTime('inicio');
+            $table->dateTime('fin');
+            $table->boolean('activo')->default(false);
             $table->timestamps();
         });
     }

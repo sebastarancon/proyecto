@@ -14,13 +14,13 @@ class Profesor extends Migration
     public function up()
     {
         Schema::create('profesor', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->string('Nombre');
-            $table->string('Apellidos');
-            $table->string('Departamento')->nullable();
-            $table->string('Especialidad')->nullable();
-            $table->string('Cargo')->nullable();
-            $table->longText('Observaciones')->nullable();
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->string('departamento')->nullable();
+            $table->string('especialidad')->nullable();
+            $table->string('cargo')->nullable();
+            $table->longText('observaciones')->nullable();
             $table->string('codigo')->unique();
             $table->timestamps();
         });

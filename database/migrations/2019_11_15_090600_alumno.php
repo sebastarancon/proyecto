@@ -14,17 +14,17 @@ class Alumno extends Migration
     public function up()
     {
         Schema::create('alumno', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->string('Nombre');
-            $table->string('Apellidos');
-            $table->date('FechaNac')->nullable();
-            $table->integer('Grupo_Id')->unsigned();
-            $table->foreign('Grupo_Id')->references('Id')->on('grupo');
-            $table->string('Telefono1')->nullable();
-            $table->string('Telefono2')->nullable();
-            $table->string('NombrePadre')->nullable();
-            $table->string('NombreMadre')->nullable();
-            $table->longText('Observaciones')->nullable();
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->date('fechaNac')->nullable();
+            $table->integer('grupo_Id')->unsigned();
+            $table->foreign('grupo_Id')->references('id')->on('grupo')->onDelete('cascade');
+            $table->string('telefono1')->nullable();
+            $table->string('telefono2')->nullable();
+            $table->string('nombrePadre')->nullable();
+            $table->string('nombreMadre')->nullable();
+            $table->longText('observaciones')->nullable();
             $table->timestamps();
         });
     }

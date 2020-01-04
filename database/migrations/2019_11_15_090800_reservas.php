@@ -14,14 +14,14 @@ class Reservas extends Migration
     public function up()
     {
         Schema::create('reservas', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->integer('Profesor_Id')->unsigned();
-            $table->foreign('Profesor_Id')->references('Id')->on('profesor');
-            $table->integer('Aula_Id')->unsigned();
-            $table->foreign('Aula_Id')->references('Id')->on('aula');
+            $table->increments('id');
+            $table->integer('profesor_Id')->unsigned();
+            $table->foreign('profesor_Id')->references('id')->on('profesor')->onDelete('cascade');
+            $table->integer('aula_Id')->unsigned();
+            $table->foreign('aula_Id')->references('id')->on('aula')->onDelete('cascade');
             $table->date('fecha');
-            $table->enum('hora', ['1', '2', '3', '4', '5', '6', '7', 'R']);//prueba
-            $table->longText('Observaciones')->nullable();
+            $table->enum('hora', ['1', '2', '3', '4', '5', '6', '7', 'R']);
+            $table->longText('observaciones')->nullable();
             $table->timestamps();
         });
     }

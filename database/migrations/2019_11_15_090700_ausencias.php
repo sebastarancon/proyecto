@@ -14,15 +14,15 @@ class Ausencias extends Migration
     public function up()
     {
         Schema::create('ausencias', function (Blueprint $table) {
-            $table->increments('Id');
+            $table->increments('id');
             $table->date('fecha');
-            $table->enum('hora', ['1', '2', '3', '4', '5', '6', '7', 'R']);//prueba
-            $table->integer('Profesor_Id')->unsigned();
-            $table->foreign('Profesor_Id')->references('Id')->on('profesor');
-            $table->integer('Profesor_Sustituye_Id')->unsigned();
-            $table->foreign('Profesor_Sustituye_Id')->references('Id')->on('profesor');
-            $table->longText('Observaciones1')->nullable();
-            $table->longText('Observaciones2')->nullable();
+            $table->enum('hora', ['1', '2', '3', '4', '5', '6', '7', 'R']);
+            $table->integer('profesor_Id')->unsigned();
+            $table->foreign('profesor_Id')->references('id')->on('profesor')->onDelete('cascade');
+            $table->integer('profesor_Sustituye_Id')->unsigned();
+            $table->foreign('profesor_Sustituye_Id')->references('id')->on('profesor')->onDelete('cascade');
+            $table->longText('observaciones1')->nullable();
+            $table->longText('observaciones2')->nullable();
             $table->timestamps();
         });
     }

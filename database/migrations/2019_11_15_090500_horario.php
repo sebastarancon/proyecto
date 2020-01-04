@@ -14,19 +14,19 @@ class Horario extends Migration
     public function up()
     {
         Schema::create('horario', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->integer('Profesor_Id')->unsigned();
-            $table->foreign('Profesor_Id')->references('Id')->on('profesor');
-            $table->integer('Grupo_Id')->unsigned();
-            $table->foreign('Grupo_Id')->references('Id')->on('grupo');
-            $table->integer('Aula_Id')->unsigned();
-            $table->foreign('Aula_Id')->references('Id')->on('aula');
-            $table->enum('dia', ['L', 'M', 'X', 'J', 'V']);//prueba
-            $table->enum('hora', ['1', '2', '3', '4', '5', '6', '7', 'R']);//prueba
-            $table->longText('Observaciones')->nullable();
-            $table->boolean('EsProfesor')->deafult(false);
-            $table->integer('Materia_Id')->unsigned();
-            $table->foreign('Materia_Id')->references('Id')->on('materia');
+            $table->increments('id');
+            $table->integer('profesor_Id')->unsigned();
+            $table->foreign('profesor_Id')->references('id')->on('profesor')->onDelete('cascade');
+            $table->integer('grupo_Id')->unsigned();
+            $table->foreign('grupo_Id')->references('id')->on('grupo')->onDelete('cascade');
+            $table->integer('aula_Id')->unsigned();
+            $table->foreign('aula_Id')->references('id')->on('aula')->onDelete('cascade');
+            $table->enum('dia', ['L', 'M', 'X', 'J', 'V']);
+            $table->enum('hora', ['1', '2', '3', '4', '5', '6', '7', 'R']);
+            $table->longText('observaciones')->nullable();
+            $table->boolean('esProfesor')->default(false);
+            $table->integer('materia_Id')->unsigned();
+            $table->foreign('materia_Id')->references('Id')->on('materia')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -31,3 +31,5 @@ Route::resource('reserva','ReservaController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/importar_profesor', 'ProfesorController@importar');
+Route::post('/importar_profesor2', 'ProfesorController@importa2');

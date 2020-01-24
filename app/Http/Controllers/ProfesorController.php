@@ -117,4 +117,15 @@ class ProfesorController extends Controller
         $profesor->delete();        
         return redirect()->action('ProfesorController@index')->with('notice', 'Se ha borrado el registro');
     }
+
+    public function importar(){
+        return view('profesores.importar');
+    }
+
+    public function importa2(Request $request){
+        
+        $nombre=$request->file('archivo')->getClientOriginalName();
+        return redirect()->action('ProfesorController@index')->with('notice', 'El fichero '.$nombre.' se ha añadido correctamente');
+        
+    }
 }

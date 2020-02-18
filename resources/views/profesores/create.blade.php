@@ -35,6 +35,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-danger btn-lg">Aceptar</button>
+					
 				</form>
 			</div>
 		</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Alumno;
 
 class AlumnoController extends Controller
@@ -14,7 +15,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        return view('alumnos.index');
+        $alumnos=Alumno::all();    //recogo los datos de la tabla
+        return view('alumnos.index', ['alumnos'=>$alumnos]);
     }
 
     /**
@@ -24,7 +26,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alumnos.create');
     }
 
     /**
@@ -35,7 +37,20 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumno= new Alumno();
+        $alumno->nombre=$request->input('nombre');
+        $alumno->apellidos=$request->input('apellidos');
+        $alumno->fechaNac=$request->input('fechaNac');
+        $alumno->grupo_Id=$request->input('grupo_Id');
+        $alumno->telefono1=$request->input('telefono1');
+        $alumno->telefono2=$request->input('telefono2');
+        $alumno->nombrePadre=$request->input('nombrePadre');
+        $alumno->nombreMadre=$request->input('nombreMadre');
+        $alumno->observaciones=$request->input('observaciones');
+        $alumno->imagen=$request->input('imagen');
+
+        $alumno->save();
+        return redirect()->action('AlumnoController@index')->with('notice', 'Registro creado');
     }
 
     /**
@@ -46,7 +61,8 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {
-        //
+        $alumno=Alumno::find($id);    
+        return view('alumnos.show', ['alumno'=>$alumno]);
     }
 
     /**
@@ -57,7 +73,8 @@ class AlumnoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alumno=Alumno::find($id);    
+        return view('alumnos.update', ['alumno'=>$alumno]);
     }
 
     /**
@@ -69,8 +86,31 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $alumno=Alumno::find($id);
+        $alumno->nombre=$request->input('nombre');
+        $alumno->apellidos=$request->input('apellidos');
+        $alumno->fechaNac=$request->input('fechaNac');
+        $alumno->grupo_Id=$request->input('grupo_Id');
+        $alumno->telefono1=$request->input('telefono1');
+        $alumno->telefono2=$request->input('telefono2');
+        $alumno->nombrePadre=$request->input('nombrePadre');
+        $alumno->nombreMadre=$request->input('nombreMadre');
+        $alumno->observaciones=$request->input('observaciones');
+
+        $image= $request->file('imagen');
+        $input['imagename']= time(). '.' .$image->getClientOriginalExtension();
+        $destino= public_path('/storage');
+        $image->move($destino, $input['imagename']);
+
+        /* echo $image.'<br>';
+        echo $input['imagename'].'<br>';
+        echo $destino.'<br>';
+        exit; */
+        $alumno->imagen=$request->file($image);
+
+        $alumno->save();
+        return redirect()->action('AlumnoController@index')->with('notice', 'Registro modificado');
+    }//rcrv82 usuario Roberto
 
     /**
      * Remove the specified resource from storage.
@@ -80,6 +120,8 @@ class AlumnoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $alumno= Alumno::find($id);
+        $alumno->delete();        
+        return redirect()->action('AlumnoController@index')->with('notice', 'Se ha borrado el registro');
     }   
 }

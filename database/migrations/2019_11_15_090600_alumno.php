@@ -25,6 +25,7 @@ class Alumno extends Migration
             $table->string('nombrePadre')->nullable();
             $table->string('nombreMadre')->nullable();
             $table->longText('observaciones')->nullable();
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }

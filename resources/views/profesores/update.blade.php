@@ -39,6 +39,7 @@
 						<input type="text" class="form-control" name="codigo" value="{{$profesor->codigo}}">
 					</div>
 					<button type="submit" class="btn btn-danger btn-lg">Aceptar</button>
+					<button onclick="location.href='{{ url('profesor')}}'" class="btn btn-primary btn-lg my-1">Volver</button>
 				</form>
 			</div>
 		</div>

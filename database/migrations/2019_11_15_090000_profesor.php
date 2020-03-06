@@ -22,6 +22,7 @@ class Profesor extends Migration
             $table->string('cargo')->nullable();
             $table->longText('observaciones')->nullable();
             $table->string('codigo')->unique();
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }

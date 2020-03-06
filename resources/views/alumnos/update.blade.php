@@ -1,8 +1,9 @@
 @extends('layouts.layoutAlumno')
 
 @section('contenido')
+<div class="container bg-warning py-3">
 	<div class="row justify-content-md-center">				
-		<div class="col-12 col-md-7 text-left text-white font-weight-bold">
+		<div class="col-12 col-md-7 text-left font-weight-bold">
 			<h1>ACTUALIZAR ALUMNO</h1>
 			<form action="{{ url('alumno').'/'.$alumno->id }}" method="POST" enctype="multipart/form-data">
 				{{ csrf_field() }}
@@ -48,9 +49,9 @@
 					IMAGEN
 					<input type="file" class="form-control" name="imagen" accept=".jpg, .jpeg, .png" value="{{$alumno->imagen}}">
 				</div>
-				<button type="submit" class="btn btn-danger btn-lg">Aceptar</button>
-				<button onclick="location.href='{{ url('alumno')}}'" class="btn btn-primary btn-lg my-1">Volver</button>
+				<button type="submit" class="btn btn-primary btn-lg">Aceptar</button>
 			</form>
 		</div>
 	</div>
+</div>
 @endsection

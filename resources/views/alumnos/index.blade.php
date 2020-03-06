@@ -1,33 +1,40 @@
 @extends('layouts.layoutAlumno')
 
 @section('contenido')
-	<nav class="nav justify-content-center bg-dark">
-		<a class="nav-link text-white bg-success mx-2" href="profesor">Profesores</a>
-		<a class="nav-link text-white bg-success mx-2" href="grupo">Grupos</a>
-		<a class="nav-link text-white bg-success mx-2" href="alumno">Alumnos</a>
-	</nav>
-
-	<p class="h1 text-center text-white font-weight-bold">Visualizacion listado de alumnos</h1>
+	<p class="h1 text-center font-weight-bold"><u>Visualización listado de alumnos</u></h1>
 
 	<div class="row justify-content-md-center">				
-		<div class="col-12 col-md-7 text-center text-white font-weight-bold">
-			<div class="card bg-dark px-5 ">
-				<?php
-					foreach ($alumnos as $alumno) {
-						echo '&nbsp&nbsp'.$alumno->nombre.'&nbsp&nbsp';
-						echo $alumno->apellidos . '<br>';
-						echo '&nbsp&nbsp<a href="alumno/'.$alumno->id.'" class="btn btn-primary btn-sm">VISUALIZAR</a>&nbsp&nbsp';
-						echo '<a href="alumno/'.$alumno->id.'/edit" class="btn btn-warning btn-sm">ACTUALIZAR</a>&nbsp&nbsp';
-						echo '<form action="alumno/'.$alumno->id.'" method="POST">';
-				?>
-						{{ csrf_field() }}
-						{{ method_field('DELETE') }}
-				<?php
-						echo '&nbsp&nbsp<input type="submit" value="ELIMINAR" class="btn btn-danger btn-sm my-1">';
-						echo '</form><hr>';
-						echo '<br>';
-					}
-				?>
+		<div class="col-12 col-md-7 text-center font-weight-bold">
+			<div class="row">
+				<div class="col-2">
+					<button onclick="location.href='{{ url('alumno/create')}}'" class="btn btn-primary btn-lg my-1 font-weight-bold">Crear alumno</button>
+
+					<nav class="nav justify-content-center d-flex flex-column">
+						<a class="nav-link text-white bg-primary my-2 rounded p-2" href="profesor">Profesores</a>
+						<a class="nav-link text-white bg-primary my-2 rounded p-2" href="grupo">Grupos</a>
+						<a class="nav-link text-white bg-primary my-2 rounded p-2" href="alumno">Alumnos</a>
+					</nav>
+				</div>
+				<div class="col-10">
+					<div class="card bg-warning px-5 ">
+						<?php
+							foreach ($alumnos as $alumno) {
+								echo "<h3 class='text-dark'>$alumno->nombre&nbsp$alumno->apellidos</h3>";
+								echo '<nav class="nav justify-content-center d-flex flex-row p-3">';
+								echo '<a href="alumno/'.$alumno->id.'" class="btn btn-primary btn-sm ext">VISUALIZAR</a>';
+								echo '<a href="alumno/'.$alumno->id.'/edit" class="btn btn-primary btn-sm ext">ACTUALIZAR</a>';
+								echo '<form action="alumno/'.$alumno->id.'" method="POST">';
+						?>
+								{{ csrf_field() }}
+								{{ method_field('DELETE') }}
+						<?php
+								echo '<input type="submit" value="ELIMINAR" class="btn btn-primary btn-sm my-1 ext">';
+								echo '</form>';
+								echo '</nav>';
+							}
+						?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>	

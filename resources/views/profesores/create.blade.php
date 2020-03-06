@@ -1,12 +1,12 @@
 @extends('layouts.layoutProfesor')
 
 @section('contenido')
-	<div class="container bg-info py-3">
+	<div class="container bg-warning py-3">
 		<div class="row justify-content-md-center">				
-			<div class="col-12 col-md-7 text-left text-white font-weight-bold">
+			<div class="col-12 col-md-7 text-left text-dark font-weight-bold">
 				
 				<h1>CREAR NUEVO PROFESOR</h1>
-				<form action="{{ url('profesor') }}" method="POST"><!-- llamo al controlador 'profesor'-->
+				<form action="{{ url('profesor') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -33,8 +33,10 @@
 					<div class="form-group">
 						CODIGO<input type="text" class="form-control" name="codigo">
 					</div>
-
-					<button type="submit" class="btn btn-danger btn-lg">Aceptar</button>
+					<div class="form-group">
+						IMAGEN<input type="file" class="form-control" accept=".jpg, .jpeg, .png" name="imagen">
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg">Aceptar</button>
 					
 				</form>
 			</div>

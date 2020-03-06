@@ -1,16 +1,14 @@
 @extends('layouts.layoutAlumno')
 
 @section('contenido')
+<div class="container bg-warning py-3">
 	<div class="row justify-content-md-center">				
-		<div class="col-12 col-md-7 text-left text-white font-weight-bold">
+		<div class="col-12 col-md-7 text-left font-weight-bold">
 			
 			<h1>CREAR NUEVO ALUMNO</h1>
-			<form action="{{ url('alumno') }}" method="POST">
+			<form action="{{ url('alumno') }}" method="POST" enctype="multipart/form-data">
 				{{ csrf_field() }}
 
-				<div class="form-group">
-					ID<input type="text" class="form-control" name="id">
-				</div>
 				<div class="form-group">
 					NOMBRE<input type="text" class="form-control" name="nombre">
 				</div>
@@ -39,12 +37,13 @@
 					OBSERVACIONES<input type="text" class="form-control" name="observaciones">
 				</div>
 				<div class="form-group">
-					IMAGEN<input type="file" class="form-control" accept=".jpg, .jpeg, .png" name="imagen" accept=".jpg, .jpeg, .png">
+					IMAGEN<input type="file" class="form-control" accept=".jpg, .jpeg, .png" name="imagen">
 				</div>
 
-				<button type="submit" class="btn btn-danger btn-lg">Aceptar</button>
+				<button type="submit" class="btn btn-primary btn-lg">Aceptar</button>
 				
 			</form>
 		</div>
 	</div>
+</div>
 @endsection

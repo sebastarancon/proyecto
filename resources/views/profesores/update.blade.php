@@ -2,11 +2,11 @@
 
 @section('contenido')
 
-	<div class="container bg-info py-3">
+	<div class="container bg-warning py-3">
 		<div class="row justify-content-md-center">				
-			<div class="col-12 col-md-7 text-left text-white font-weight-bold">
+			<div class="col-12 col-md-7 text-left text-dark font-weight-bold">
 				<h1>ACTUALIZAR PROFESOR</h1>
-				<form action="{{ url('profesor').'/'.$profesor->id }}" method="POST">
+				<form action="{{ url('profesor').'/'.$profesor->id }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}
 					
@@ -38,8 +38,11 @@
 						CODIGO
 						<input type="text" class="form-control" name="codigo" value="{{$profesor->codigo}}">
 					</div>
-					<button type="submit" class="btn btn-danger btn-lg">Aceptar</button>
-					<button onclick="location.href='{{ url('profesor')}}'" class="btn btn-primary btn-lg my-1">Volver</button>
+					<div class="form-group">
+						IMAGEN
+						<input type="file" class="form-control" name="imagen" accept=".jpg, .jpeg, .png" value="{{$profesor->imagen}}">
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg">Aceptar</button>
 				</form>
 			</div>
 		</div>

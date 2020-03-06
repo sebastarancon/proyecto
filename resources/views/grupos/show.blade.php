@@ -2,9 +2,9 @@
 
 @section('contenido')
 	<div class="row justify-content-md-center">				
-		<div class="col-12 col-md-7 text-center text-white font-weight-bold">
-			<div class="card bg-dark px-5">
-				<p class="h1 text-center text-white font-weight-bold">MOSTRAR GRUPO</p>
+		<div class="col-12 col-md-7 text-center text-dark font-weight-bold">
+			<div class="card bg-warning px-5">
+				<p class="h1 text-center">MOSTRAR GRUPO</p>
 				NOMBRE: {{ $grupo->nombre }}<br><br>
 				NOMBRE TUTOR: {{ $grupo->nombreTutor }}<br><br>
 				CURSO: {{ $grupo->curso }}<br><br>

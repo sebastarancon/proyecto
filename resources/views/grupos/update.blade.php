@@ -1,8 +1,9 @@
 @extends('layouts.layoutGrupo')
 
-@section('contenido')	
+@section('contenido')
+<div class="container bg-warning py-3">
 	<div class="row justify-content-md-center">				
-		<div class="col-12 col-md-7 text-left text-white font-weight-bold">
+		<div class="col-12 col-md-7 text-left text-dark font-weight-bold">
 			<h1>ACTUALIZAR GRUPO</h1>
 			<form action="{{ url('grupo').'/'.$grupo->id }}" method="POST">
 				{{ csrf_field() }}
@@ -25,9 +26,9 @@
 					<input type="text" class="form-control" name="descripcion" value="{{$grupo->descripcion}}">
 				</div>
 				
-				<button type="submit" class="btn btn-danger btn-lg">Aceptar</button>
-				<button onclick="location.href='{{ url('grupo')}}'" class="btn btn-primary btn-lg my-1">Volver</button>
+				<button type="submit" class="btn btn-primary btn-lg">Aceptar</button>
 			</form>
 		</div>
 	</div>
+</div>
 @endsection

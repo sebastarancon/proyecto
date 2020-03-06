@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Alumno;
 
 class AlumnoController extends Controller
@@ -47,7 +48,10 @@ class AlumnoController extends Controller
         $alumno->nombrePadre=$request->input('nombrePadre');
         $alumno->nombreMadre=$request->input('nombreMadre');
         $alumno->observaciones=$request->input('observaciones');
-        $alumno->imagen=$request->input('imagen');
+        
+        $file=$request->file('imagen');
+        $alumno->imagen = $file->getClientOriginalName().date('YmdHis').'-'.rand(0, 1000000);
+        \Storage::disk('local')->put($alumno->imagen,  \File::get($file));
 
         $alumno->save();
         return redirect()->action('AlumnoController@index')->with('notice', 'Registro creado');
@@ -97,16 +101,9 @@ class AlumnoController extends Controller
         $alumno->nombreMadre=$request->input('nombreMadre');
         $alumno->observaciones=$request->input('observaciones');
 
-        $image= $request->file('imagen');
-        $input['imagename']= time(). '.' .$image->getClientOriginalExtension();
-        $destino= public_path('/storage');
-        $image->move($destino, $input['imagename']);
-
-        /* echo $image.'<br>';
-        echo $input['imagename'].'<br>';
-        echo $destino.'<br>';
-        exit; */
-        $alumno->imagen=$request->file($image);
+        $file=$request->file('imagen');
+        $alumno->imagen = $file->getClientOriginalName().date('YmdHis').'-'.rand(0, 1000000);
+        \Storage::disk('local')->put($alumno->imagen,  \File::get($file));
 
         $alumno->save();
         return redirect()->action('AlumnoController@index')->with('notice', 'Registro modificado');

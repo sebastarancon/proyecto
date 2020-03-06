@@ -52,6 +52,10 @@ class ProfesorController extends Controller
         $profesor->observaciones=$request->input('observaciones');
         $profesor->codigo=$request->input('codigo');
 
+        $file=$request->file('imagen');
+        $profesor->imagen = $file->getClientOriginalName().date('YmdHis').'-'.rand(0, 1000000);
+        \Storage::disk('local')->put($profesor->imagen,  \File::get($file));
+
         $profesor->save();
         return redirect()->action('ProfesorController@index')->with('notice', 'Contacto creado');
     }
@@ -99,6 +103,10 @@ class ProfesorController extends Controller
         $profesor->cargo=$request->input('cargo');
         $profesor->observaciones=$request->input('observaciones');
         $profesor->codigo=$request->input('codigo');
+
+        $file=$request->file('imagen');
+        $profesor->imagen = $file->getClientOriginalName().date('YmdHis').'-'.rand(0, 1000000);
+        \Storage::disk('local')->put($profesor->imagen,  \File::get($file));
         
         $profesor->save();
         return redirect()->action('ProfesorController@index')->with('notice', 'Se ha modificado');
@@ -128,4 +136,5 @@ class ProfesorController extends Controller
         return redirect()->action('ProfesorController@index')->with('notice', 'El fichero '.$nombre.' se ha añadido correctamente');
         
     }
+
 }

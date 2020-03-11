@@ -14,7 +14,8 @@ class AusenciaController extends Controller
      */
     public function index()
     {
-        return view('ausencias.index');
+        $listado_ausencias=Ausencia::all();  
+        return view('ausencias.index', ['ausencias'=>$listado_ausencias]);
     }
 
     /**
@@ -24,7 +25,7 @@ class AusenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('ausencias.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class AusenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ausencia=new Ausencia();
+        $ausencia->fecha=$request->input('fecha');
+        $ausencia->hora=$request->input('hora');
+        $ausencia->profesor_Id=$request->input('profesor_Id');
+        $ausencia->profesor_Sustituye_Id=$request->input('profesor_Sustituye_Id');
+        $ausencia->observaciones1=$request->input('observaciones1');
+        $ausencia->observaciones2=$request->input('observaciones2');
+
+        $ausencia->save();
+        return redirect()->action('AusenciaController@index')->with('notice', 'Registro creado');
     }
 
     /**
@@ -46,7 +56,8 @@ class AusenciaController extends Controller
      */
     public function show($id)
     {
-        //
+        $ausencia=Ausencia::find($id);    
+        return view('ausencias.show', ['ausencia'=>$ausencia]);
     }
 
     /**
@@ -57,7 +68,8 @@ class AusenciaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ausencia=Ausencia::find($id);    
+        return view('ausencias.update', ['ausencia'=>$ausencia]);
     }
 
     /**
@@ -69,7 +81,16 @@ class AusenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ausencia=new Ausencia($id);
+        $ausencia->fecha=$request->input('fecha');
+        $ausencia->hora=$request->input('hora');
+        $ausencia->profesor_Id=$request->input('profesor_Id');
+        $ausencia->profesor_Sustituye_Id=$request->input('profesor_Sustituye_Id');
+        $ausencia->observaciones1=$request->input('observaciones1');
+        $ausencia->observaciones2=$request->input('observaciones2');
+
+        $ausencia->save();
+        return redirect()->action('AusenciaController@index')->with('notice', 'Registro modificado');
     }
 
     /**
@@ -80,7 +101,9 @@ class AusenciaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ausencia=Ausencia::find($id);
+        $ausencia->delete();
+        return redirect()->action('AusenciaController@index')->with('notice', 'Se ha borrado el registro');
     }
     
 }

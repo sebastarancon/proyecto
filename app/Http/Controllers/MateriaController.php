@@ -14,7 +14,8 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        return view('materias.index');
+        $listado_materias=Materia::all();  
+        return view('materias.index', ['materias'=>$listado_materias]);
     }
 
     /**
@@ -24,7 +25,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('materias.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $materia=new Materia();
+        $materia->nombre=$request->input('nombre');
+        $materia->departamento=$request->input('departamento');
+        $materia->observaciones=$request->input('observaciones');
+
+        $materia->save();
+        return redirect()->action('MateriaController@index')->with('notice', 'Registro creado');
     }
 
     /**
@@ -46,7 +53,8 @@ class MateriaController extends Controller
      */
     public function show($id)
     {
-        //
+        $materia=Materia::find($id);    
+        return view('materias.show', ['materia'=>$materia]);
     }
 
     /**
@@ -57,7 +65,8 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $materia=Materia::find($id);    
+        return view('materias.update', ['materia'=>$materia]);
     }
 
     /**
@@ -69,7 +78,13 @@ class MateriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $materia=new Materia($id);
+        $materia->nombre=$request->input('nombre');
+        $materia->departamento=$request->input('departamento');
+        $materia->observaciones=$request->input('observaciones');
+
+        $materia->save();
+        return redirect()->action('MateriaController@index')->with('notice', 'Registro creado');
     }
 
     /**
@@ -80,7 +95,9 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $materia=Materia::find($id);
+        $materia->delete();
+        return redirect()->action('MateriaController@index')->with('notice', 'Se ha borrado el registro');
     }
     
 }

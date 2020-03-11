@@ -8,10 +8,7 @@
 				<h1>CREAR NUEVO PROFESOR</h1>
 				<form action="{{ url('profesor') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
-
-					<div class="form-group">
-						ID<input type="text" class="form-control" name="id">
-					</div>
+					
 					<div class="form-group">
 						NOMBRE<input type="text" class="form-control" name="nombre">
 					</div>

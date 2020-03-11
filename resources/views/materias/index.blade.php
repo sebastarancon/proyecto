@@ -1,13 +1,13 @@
-@extends('layouts.layoutGrupo')
+@extends('layouts.layoutMateria')
 
-@section('contenido')	
-	<p class="h1 text-center text-dark font-weight-bold"><u>Listado de grupos</u></h1>
+@section('contenido')
+	<p class="h1 text-center font-weight-bold"><u>Listado de materias</u></h1>
 
 	<div class="row justify-content-md-center">				
-		<div class="col-12 col-md-7 text-center text-dark font-weight-bold">
+		<div class="col-12 col-md-7 text-center font-weight-bold">
 			<div class="row">
 				<div class="col-2">
-					<button onclick="location.href='{{ url('grupo/create')}}'" class="btn btn-primary btn-lg my-1 font-weight-bold">Nuevo grupo</button>
+					<button onclick="location.href='{{ url('materia/create')}}'" class="btn btn-primary btn-lg my-1 font-weight-bold">Nueva materia</button>
 
 					<nav class="nav justify-content-center d-flex flex-column">
 						<a class="nav-link text-white bg-primary my-2 rounded p-2" href="profesor">Profesores</a>
@@ -22,12 +22,12 @@
 				<div class="col-10">
 					<div class="card bg-warning px-5 ">
 						<?php
-							foreach ($grupos as $grupo) {
-								echo "<h3 class='text-dark'>$grupo->nombre&nbsp$grupo->nombreTutor</h3>";							
+							foreach ($materias as $materia) {
+								echo "<h3 class='text-dark'>$materia->nombre</h3>";
 								echo '<nav class="nav justify-content-center d-flex flex-row p-3">';
-								echo '<a href="grupo/'.$grupo->id.'" class="btn btn-primary btn-sm ext">VISUALIZAR</a>';
-								echo '<a href="grupo/'.$grupo->id.'/edit" class="btn btn-primary btn-sm ext">ACTUALIZAR</a>';
-								echo '<form action="grupo/'.$grupo->id.'" method="POST">';
+								echo '<a href="materia/'.$materia->id.'" class="btn btn-primary btn-sm ext">VISUALIZAR</a>';
+								echo '<a href="materia/'.$materia->id.'/edit" class="btn btn-primary btn-sm ext">ACTUALIZAR</a>';
+								echo '<form action="materia/'.$materia->id.'" method="POST">';
 						?>
 								{{ csrf_field() }}
 								{{ method_field('DELETE') }}
@@ -39,8 +39,8 @@
 						?>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</div>
-	</div>	
-
+	</div>
+    
 @endsection
